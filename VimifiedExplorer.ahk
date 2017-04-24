@@ -54,8 +54,8 @@ CommandBar :=
 commandBarCommand :=
 
 
-F2::reload
-F3::suspend
+;F2::reload
+;F3::suspend
 
 
 #USEHOOK on
@@ -956,7 +956,8 @@ getExplorerPath(handler=""){
 			STRINGREPLACE windowPath, windowPath, /, \, All
 		}
 	}
-	RETURN windowPath
+	path := urlDecoder(windowPath)
+	RETURN path
 }
 
 urlDecoder(string) {
