@@ -5,7 +5,9 @@ Finally the virus of _**VIM**_ has reached _**WINDOWS**_ 😈. _**VimifiedExplor
 If you do any kind of work/interaction with Windows Explorer and want to boost your productivity Or is frustrated with Windows Explorer(well I was 😆), you are at right place. Control Windows Explorer completely with just your _**KEYBOARD**_. Power of 😍 _**VIM**_ in Windows Explorer😍.
 <br/>
 **Note:** _**Executable**_ file is provided along with AHK script.
-
+<br/>
+<br/>
+**Author:** _Sahil Sehwag_
 
 ## OVERVIEW
 
