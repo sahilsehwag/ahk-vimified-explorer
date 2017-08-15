@@ -367,7 +367,7 @@ RETURN
 		}else if(command="n"){
 			SEND, {ALT DOWN}VN{ALT UP}{ENTER}
 		}else if (command="l"){
-			SEND, {CTRL DOWN}l{CTRL UP}
+			SEND, {A DOWN}l{CTRL UP}
 		}
 
 		;HotKey, f, ON
