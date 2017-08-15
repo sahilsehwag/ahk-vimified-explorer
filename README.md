@@ -2,6 +2,8 @@
 
 Finally the virus of _**VIM**_ has reached _**WINDOWS**_ 😈. _**VimifiedExplorer**_ is an _**AHK script**_ which provides _**VIM/Vifm**_ like bindings for _**Windows FileExplorer**_, and other features like _bookmarks, marks etc..._
 <br/>
+If you do any kind of work/interaction with Windows Explorer and want to boost your productivity Or is frustrated with Windows Explorer(well I was 😆), you are at right place. Control Windows Explorer completely with just your _**KEYBOARD**_. Power of 😍 _**VIM**_ in Windows Explorer😍.
+<br/>
 **Note:** _**Executable**_ file is provided along with AHK script.
 
 
