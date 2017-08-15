@@ -319,6 +319,25 @@ RETURN
 			runVimOperator("xt")
 		}else if (operatorYank=true){
 			runVimOperator("yt")
+		}else if (command="c"){
+			SEND, {ALT DOWN}SC{ALT UP}
+		}else {
+			;QTTABBAR INTEGRATION
+			miscMode := true
+			Input, command, L1 T1
+
+			if (command="n"){
+				SEND, {CTRL DOWN}n{CTRL UP}
+			}else if (command="t"){
+				SEND, {CTRL DOWN}l{CTRL UP}
+			}else if (command="l"){
+				SEND, {CTRL DOWN}{TAB}{CTRL UP}
+			}else if (command="h"){
+				SEND, {CTRL DOWN}{SHIFT DOWN}{TAB}{SHIFT UP}{CTRL UP}
+			}else if (command="q"){
+				SEND, {CTRL DOWN}w{CTRL UP}
+			}
+			miscMode := false
 		}
 		operatorCut := false
 		operatorYank := false
@@ -367,7 +386,7 @@ RETURN
 		}else if(command="n"){
 			SEND, {ALT DOWN}VN{ALT UP}{ENTER}
 		}else if (command="l"){
-			SEND, {A DOWN}l{CTRL UP}
+			SEND, {ALT DOWN}d{ALT UP}
 		}
 
 		;HotKey, f, ON
@@ -410,8 +429,8 @@ RETURN
 			SEND, {ALT DOWN}{SPACE}{ALT UP}M
 			windowMode := true
 			;WINGET, isMaximized, MinMax,
-		}else if (command="f"){
-			SEND, {SHIFT DOWN}{F11}{SHIFT UP}
+		; }else if (command="f"){
+			; SEND, {SHIFT DOWN}{F11}{SHIFT UP}
 		}else if (command="r"){
 			SEND, {ALT DOWN}{SPACE}{ALT UP}S
 			windowMode := true
@@ -441,8 +460,8 @@ RETURN
 			SEND, {ALT DOWN}VYO{ALT UP}
 		}else if (command="q"){
 			SEND, {ALT DOWN}F{ALT UP}
-		}else if (command="w"){
-			SEND, {ALT DOWN}HPEC{ALT UP}
+		; }else if (command="w"){
+			; SEND, {ALT DOWN}{HPE}{C}{ALT UP}
 		}else if (command="r"){
 			CoordMode, Mouse, Window
 			MouseClick, left, 77, 74
@@ -456,10 +475,12 @@ RETURN
 		miscMode := true
 		;HotKey, z, OFF
 		Input, command, L1 T1
-		if (command="z"){
-			SEND, {CTRL DOWN}w{CTRL UP}
+		if (command="q"){
+			SEND, {ALT DOWN}{F4}{ALT UP}
 		}else if (command="c"){
 			SEND, {ALT DOWN}SC{ALT UP}
+		; }else if (command="u"){
+			; SEND, {ALT DOWN}JZA{ALT UP}
 		}else if (command="p"){
 			SEND, {ALT DOWN}HPI{ALT UP}
 		}
@@ -560,9 +581,17 @@ RETURN
 	
 		Input, command, L1 T1
 		IniRead, path, %iniPath%, Marks, %command%
-		SEND, {ALT DOWN}d{ALT UP}
-		SENDRAW, %path%
-		SEND, {ENTER}
+
+		if (path != "ERROR"){
+			SEND, {ESCAPE}
+			SEND, {ALT DOWN}d{ALT UP}
+			SEND, {CTRL DOWN}a{CTRL UP}
+			SENDRAW, %path%
+			SEND, {ENTER}
+		}else {
+			status = Mark "%command%" Doesn't Exist
+			setStatus(status)
+		}
 
 		HotKey, m, ON
 		HotKey, b, ON
@@ -584,8 +613,7 @@ RETURN
 		currentPath := getExplorerPath()
 		currentPath := urlDecoder(currentPath)
 
-		if (command=""){
-		}else{
+		if (command !=""){
 			IniWrite, %currentPath%, %iniPath%, Bookmarks, %command%
 
 			status = BOOKMARK [%command% = %currentPath%] CREATED
@@ -613,9 +641,14 @@ RETURN
 		if (bookmark=""){
 		}else{
 			IniRead, path, %iniPath%, Bookmarks, %bookmark%
-			SEND, {ALT DOWN}d{ALT UP}
-			SENDRAW, %path%
-			SEND, {ENTER}
+			if (path != "ERROR"){
+				SEND, {ALT DOWN}d{ALT UP}
+				SENDRAW, %path%
+				SEND, {ENTER}
+			}else {
+				status = BOOKMARK "%bookmark%" Doesn't Exist
+				setStatus(status)
+			}
 		}
 
 		HotKey, m, ON
@@ -650,7 +683,9 @@ execCommandModeCommand(){
 
 		cwd := getExplorerPath()
 		runCommand := commandBarCommand
-		RUN, %runCommand%, %cwd%
+		if (runCommand != ""){
+			RUN, %runCommand%, %cwd%
+		}
 	}
 	commandBarCommand := ""
 }

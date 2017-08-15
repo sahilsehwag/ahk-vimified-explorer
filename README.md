@@ -22,10 +22,11 @@ Finally the virus of _**VIM**_ has reached _**WINDOWS**_ 😈. _**VimifiedExplor
 - _**VIM/VIFM like bindings**_
 - _**Marks**_
 - _**Bookmarks**_
-- _**Persistent Marks and Bookmarks (creates .verc in HOME directory to store your marks and bookmarks)**_
+- _**Integration with QTTabBar**_
 - _**Colon Commands (currently only one)**_
+- _**Displays current mode**_
 - _**Currently works on Windows 10 and probably Windows 8(most features should work) too (Only tested on Windows 10)**_
-- _**Visual Hint to display current mode**_
+- _**Persistent Marks and Bookmarks (creates .verc in HOME directory to store your marks and bookmarks)**_
 
 
 ## INSTALLATION
@@ -131,7 +132,7 @@ __Note:__<br/>
 | `zc` | Compress selected items |
 | `zu` | UnCompress selected zip file(_**NOT IMPLEMENTED**_) |
 | `zp` | Pin selected item to QuickAccess |
-| `zz` | Close current explorer window |
+| `zq` | Close current explorer window |
 
 ##### SELECT OPERATIONS
 | Keybinding | Description |
@@ -152,6 +153,25 @@ __Note:__<br/>
 | `ow` | Opens *__Open With__* menu |
 | `oq` | Opens explorer's *__QuickAccess__* menu(Press highlighted number to select) |
 
+##### WINDOW OPERATIONS
+| Keybinding | Description |
+|------------|-------------|
+| `wh` | Pin window to left |
+| `wj` | Minimize/Pin to bottom |
+| `wk` | Maximize/Pin to top |
+| `wl` | Pin window to right |
+| `wm` | Move current window around(_`h,j,k,l`_ to move _left,down,up,right_ and `esc,enter` to cancel,confirm) |
+| `wr` | Resize current window(_`h,j,k,l`_ to increase/decrease in _left,down,up,right_ direction and `esc,enter` to cancel,confirm) |
+
+##### TAB OPERATIONS (QTTabBar)
+| Keybinding | Description |
+|------------|-------------|
+| `tn` | Create new tab |
+| `tl` | Goto next tab |
+| `th` | Goto previous tab |
+| `tt` | Toggle tab lock |
+| `tq` | Close current tab |
+
 
 ### COMMANDS
 
@@ -167,7 +187,9 @@ __Note:__<br/>
 
 ## KNOWN ISSUES
 
-- Mode tooltip doesn't automatically disappears when switching to other applications. (Use <Escape> to remove it)
+- Mode tooltip doesn't automatically disappears when switching to other applications. (Use `<Escape>` to remove it)
+- When using `J,K` to navigate history, system(keyboard) language is automatically cycled left,right (for people with more than 1 language installed)
+- When resizing a window in *__left/top__* direction causes wierd shaking.
 
 
 ## CONTRIBUTION
@@ -179,9 +201,13 @@ Contributors are welcomed.
 
 - Fix known issues
 - Implement motions for views other than _DETAIL VIEW_
+- Implementing History Features (Ex. Jumping to last location)
 - Implement operations to perform operations like delete on `n` items up etc...
 - Implement *__HELP DOCUMENTATION__* in application itself
-- _**CLOVER**_ integration.
-- Complete rewrite/refactoring because
-	1. To provide a more composable architecture, to provide features like _**Custom Commands, Extensibility, Custom Mappings, Customizability**_)
-	2. Bad incode Documentation 😅.
+- Complete rewrite to provide a more composable architecture, to provide features like _**Custom Commands, Extensibility, Custom Mappings, Customizability etc..**_)
+
+
+
+
+
+
